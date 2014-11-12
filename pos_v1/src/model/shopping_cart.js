@@ -1,5 +1,6 @@
 function ShoppintCart(){
   this.shoppingList = [];
+  this.discountList = [];
 
   this.selectItem = function(item){
     for (var i in this.shoppingList){
