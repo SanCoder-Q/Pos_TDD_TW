@@ -21,7 +21,7 @@ describe('pos', function () {
 
   });
 
-  it('should print an empty inventory when get a empty array input', function(){
+  it('should print an correct inventory when input ["ITEM000002"]', function(){
 
     var inputs = ['ITEM000002'];
 
@@ -36,6 +36,28 @@ describe('pos', function () {
       '挥泪赠送商品：\n' +
       '----------------------\n' +
       '总计：5.50(元)\n' +
+      '节省：0.00(元)\n' +
+      '**********************';
+
+    expect(console.log).toHaveBeenCalledWith(expectText);
+
+  });
+
+  it('should print an correct inventory when input ["ITEM000002", "ITEM000002"]', function(){
+
+    var inputs = ["ITEM000002", "ITEM000002"];
+
+    spyOn(console, 'log');
+
+    printInventory(inputs);
+
+    var expectText =
+      '***<没钱赚商店>购物清单***\n' +
+      '名称：苹果，数量：2斤，单价：5.50(元)，小计：11.00(元)\n' +
+      '----------------------\n' +
+      '挥泪赠送商品：\n' +
+      '----------------------\n' +
+      '总计：11.00(元)\n' +
       '节省：0.00(元)\n' +
       '**********************';
 
