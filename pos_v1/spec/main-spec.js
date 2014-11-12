@@ -65,6 +65,28 @@ describe('pos', function () {
 
   });
 
+  it('should print an correct inventory when input ["ITEM000002-3"]', function(){
+
+    var inputs = ["ITEM000002-3"];
+
+    spyOn(console, 'log');
+
+    printInventory(inputs);
+
+    var expectText =
+      '***<没钱赚商店>购物清单***\n' +
+      '名称：苹果，数量：3斤，单价：5.50(元)，小计：16.50(元)\n' +
+      '----------------------\n' +
+      '挥泪赠送商品：\n' +
+      '----------------------\n' +
+      '总计：16.50(元)\n' +
+      '节省：0.00(元)\n' +
+      '**********************';
+
+    expect(console.log).toHaveBeenCalledWith(expectText);
+
+  });
+
 /*
     it('should print correct text', function () {
         allItems = loadAllItems();

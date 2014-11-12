@@ -9,13 +9,13 @@ function ShoppintCart(){
     return null;
   };
 
-  this.addItem = function(item){
+  this.addItem = function(item, amount){
     var cartItem = this.selectItem(item);
     if (cartItem == null) {
-      this.shoppingList.push({ itemInfo: item, amount: 1 });
+      this.shoppingList.push({ itemInfo: item, amount: amount });
     }
     else {
-      cartItem.amount += 1;
+      cartItem.amount += amount || 1;
     }
   };
 }

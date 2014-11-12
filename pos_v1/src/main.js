@@ -4,11 +4,12 @@ function printInventory(barcodeList) {
   var shoppingCart = new ShoppintCart();
   var sumPrice = 0.0;
 
-  barcodeList.forEach(function(barcode){
+  objectifyBarcodeList(barcodeList).forEach(function(barcodeInfo){
+
     allItems.forEach(function(item){
-      if (barcode === item.barcode){
-        shoppingCart.addItem(item);
-        sumPrice += item.price;
+      if (barcodeInfo.barcode === item.barcode){
+        shoppingCart.addItem(item, barcodeInfo.amount);
+        sumPrice += item.price * barcodeInfo.amount;
       }
     });
   });
@@ -32,4 +33,16 @@ function printInventory(barcodeList) {
     '节省：0.00(元)\n' + borderline;
 
   console.log(expectText);
+}
+
+function objectifyBarcodeList(barcodeList){
+  var objectifyBarcodeList = [];
+  barcodeList.forEach(function(barcodeInfo){
+    var barcodeSplitResult = barcodeInfo.split("-");
+    objectifyBarcodeList.push({
+      barcode: barcodeSplitResult[0],
+      amount: parseInt(barcodeSplitResult[1] || 1)
+    });
+  });
+  return objectifyBarcodeList;
 }
