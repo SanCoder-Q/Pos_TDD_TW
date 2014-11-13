@@ -14,7 +14,7 @@ function ShoppintCart(){
 
   this.addItem = function(item, amount){
     var cartItem = this.selectItem(item);
-    if (cartItem == null) {
+    if (cartItem === null) {
       this.shoppingList.push({ itemInfo: item, amount: amount });
     }
     else {
@@ -28,7 +28,7 @@ function ShoppintCart(){
       if (promotion.hasItem(item.itemInfo)){
         var discountAmount = Math.floor(item.amount / 3);
         item.kindredPrice = item.itemInfo.price * (item.amount - discountAmount);
-        if (discountAmount != 0){
+        if (discountAmount !== 0){
           shoppingCart.discountList.push({
             itemInfo: item.itemInfo,
             amount: discountAmount

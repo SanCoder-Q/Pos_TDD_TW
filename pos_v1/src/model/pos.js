@@ -1,16 +1,16 @@
 function POS(barcodeList) {
-  var objBarcodeList = objectifyBarcodeList(barcodeList);
+  var barcodeObjList = objectifyBarcodeList(barcodeList);
   var shoppingCart = new ShoppintCart();
   var allItems = loadAllItems();
 
-  objBarcodeList.forEach(function(barcodeInfo){
+  barcodeObjList.forEach(function(barcodeInfo){
     allItems.forEach(function(item){
       if (barcodeInfo.barcode === item.barcode){
         shoppingCart.addItem(item, barcodeInfo.amount);
       }
     });
   });
-  
+
   shoppingCart.updateByPromotion(new Promotion());
 
   var inventory = new Inventory(shoppingCart);
@@ -20,14 +20,14 @@ function POS(barcodeList) {
   };
 
   function objectifyBarcodeList(barcodeList){
-    var objectifyBarcodeList = [];
+    var barcodeObjList = [];
     barcodeList.forEach(function(barcodeInfo){
       var barcodeSplitResult = barcodeInfo.split("-");
-      objectifyBarcodeList.push({
+      barcodeObjList.push({
         barcode: barcodeSplitResult[0],
         amount: parseInt(barcodeSplitResult[1] || 1)
       });
     });
-    return objectifyBarcodeList;
+    return barcodeObjList;
   }
 }
